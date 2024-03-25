@@ -3,10 +3,10 @@ package dev.mukeshm1.scalerfirstproject_28feb2024.Controllers;
 import dev.mukeshm1.scalerfirstproject_28feb2024.Models.Product;
 import dev.mukeshm1.scalerfirstproject_28feb2024.Services.ProductService;
 import dev.mukeshm1.scalerfirstproject_28feb2024.dtos.CreateProductRequestDto;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
-import java.net.CacheRequest;
 import java.util.List;
 
 @RestController
@@ -14,7 +14,8 @@ public class ProductController {
     private ProductService productService;
     private RestTemplate restTemplate;
 
-    public ProductController(ProductService productService, RestTemplate restTemplate) {
+    public ProductController(@Qualifier("selfProductService")ProductService productService,
+                             RestTemplate restTemplate) {
         this.productService = productService;
         this.restTemplate = restTemplate;
     }
@@ -41,6 +42,7 @@ public class ProductController {
     public List<Product> getAllProducts() {
         return productService.getallproducts();
     }
+
     @GetMapping("/proucts/category/{category}")
     public List<Product> getProductsByCategory(@PathVariable("category") String category) {
         return productService.getProductsByCategory(category);

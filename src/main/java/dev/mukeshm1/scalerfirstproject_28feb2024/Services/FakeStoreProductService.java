@@ -11,7 +11,8 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-@Service
+@Service("fakeStoreProductService")
+
 public class FakeStoreProductService implements ProductService{
     private RestTemplate restTemplate;
     public FakeStoreProductService (RestTemplate restTemplate) {
@@ -30,7 +31,8 @@ public class FakeStoreProductService implements ProductService{
 
 
     @Override
-    public Product createProduct(String title, Double price, String category, String description, String image) {
+    public Product createProduct(String title, Double price, String category,
+                                    String description, String image) {
         FakeStoreProductDto fakeStoreProductDto = new FakeStoreProductDto();
         fakeStoreProductDto.setTitle(title);
         fakeStoreProductDto.setPrice(price);
@@ -80,7 +82,8 @@ public class FakeStoreProductService implements ProductService{
     }
 
     @Override
-    public Product updateProduct(Long productId, String title, Double price, String category, String description, String image) {
+    public Product updateProduct(Long productId, String title, Double price, String category,
+                                    String description, String image) {
         FakeStoreProductDto fakeStoreProductDto = new FakeStoreProductDto();
         fakeStoreProductDto.setId(productId);
         fakeStoreProductDto.setTitle(title);
